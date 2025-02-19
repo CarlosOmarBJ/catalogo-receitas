@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${categoria.nome}">Categoria</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="voltar-icon">
+            <a th:href="@{/categorias}" class="btn-voltar">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+
+        <h1 class="titulo-categoria" th:text="${categoria.nome}">Nome da Categoria</h1>
+        
+        <div class="receitas-grid">
+            <div th:each="receita : ${receitas}" class="receita-card">
+                <a th:href="@{/receitas/{id}(id=${receita.id})}">
+                    <img th:if="${receita.imagemUrl}" th:src="${receita.imagemUrl}" th:alt="${receita.nome}">
+                    <h3 th:text="${receita.nome}">Nome da Receita</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

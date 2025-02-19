@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${receita.nome}">Detalhes da Receita</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="voltar-icon">
+            <a th:href="@{/receitas}" class="btn-voltar">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+
+        <div class="receita-detalhes">
+            <div class="receita-header">
+                <h1 th:text="${receita.nome}"></h1>
+                <div class="categoria-badge" th:if="${receita.categoria}">
+                    <i class="fas fa-tag"></i>
+                    <span th:text="${receita.categoria.nome}"></span>
+                </div>
+            </div>
+            
+            <div class="imagem-receita">
+                <img th:if="${receita.imagemUrl}" th:src="${receita.imagemUrl}" th:alt="${receita.nome}">
+            </div>
+            
+            <div class="descricao-container">
+                <h2><i class="fas fa-utensils"></i> Modo de Preparo</h2>
+                <div class="descricao-content">
+                    <p th:text="${receita.descricao}"></p>
+                </div>
+            </div>
+            
+            <div class="acoes-receita">
+                <a th:href="@{/receitas/{id}/editar(id=${receita.id})}" class="btn-acao editar">
+                    <i class="fas fa-edit"></i>
+                    Editar
+                </a>
+                <form th:action="@{/receitas/{id}/deletar(id=${receita.id})}" method="post" style="display: inline;">
+                    <button type="submit" class="btn-acao deletar">
+                        <i class="fas fa-trash-alt"></i>
+                        Deletar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
